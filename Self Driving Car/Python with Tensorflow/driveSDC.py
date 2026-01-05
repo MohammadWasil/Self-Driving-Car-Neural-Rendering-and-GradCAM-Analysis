@@ -8,12 +8,17 @@ import numpy as np
 import cv2
 import os
 
+from grad_cam import compute_gradcam_regression
+
 #Load the model.
-model = load_model(r"D:\Unity Game\Self Driving Car\SDCProgram\Best Models\data-003.h5") 	# Directory to load the model
+model = load_model("D:\ML\Self Driving Car\self_driving_car\Self-Driving-Car-Python\Self Driving Car\Python with Tensorflow\Best Models/data-003.h5") 	# Directory to load the model
 
 
 # Socket Tcp Connection.
 host = "127.0.0.1"
+#host = os.popen("grep nameserver /etc/resolv.conf | cut -d' ' -f2").read().strip()
+#host = "192.168.0.233"
+print(host)
 port = 25001            # Port number
 #data = "1,1,11"         # Data to be send
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)    # TCP connection
@@ -76,7 +81,7 @@ def socketConnection():
     return steeringAngleList, velocityList, throttleList, steeringAngle, velocity, throttle
 
 
-filename = r"D:\ML\Unity-ML\Drive SDC.csv" 	#Directory to save your current Data in a csv file.
+filename = r"D:\ML\Self Driving Car\self_driving_car\Self-Driving-Car-Python\driving_data\Drive_SDC_domain_shift_evening.csv" 	#Directory to save your current Data in a csv file.
 
 def csv_file(steer_Angle, velocity, throttle):
     
@@ -97,14 +102,15 @@ speed_limit = MAX_SPEED
 def preprocess(image):
     return cv2.resize(image, (200, 66), cv2.INTER_AREA)
 
+def image_process(image):
+    image = np.asarray(image)       # from PIL image to numpy array
+    image = preprocess(image)       # apply the preprocessing
+    image = np.array([image])       # the model expects 4D array
+    return image
 
 def drive(image, steering_angle, velocity, throttle):
 
     try:
-        image = np.asarray(image)       # from PIL image to numpy array
-        image = preprocess(image)       # apply the preprocessing
-        image = np.array([image])       # the model expects 4D array
-        
         steering_angle = float(model.predict(image, batch_size=1))
         steering_angle = (steering_angle/10)
         global speed_limit
@@ -120,21 +126,86 @@ def drive(image, steering_angle, velocity, throttle):
         
     except Exception as e:
         print("Exception Occured", e)
- 
+
+    return steering_angle
+
+def resize_heatmap_to_image(heatmap, original_image):
+    """
+    Resize a Grad-CAM heatmap to match the original image size.
+
+    Args:
+        heatmap: 2D numpy array, shape = (conv_height, conv_width)
+        original_image: 3D numpy array, shape = (H, W, C)
+
+    Returns:
+        heatmap_resized: 2D numpy array, shape = (H, W)
+    """
+    H, W = original_image.shape[:2]
+
+    # Resize heatmap to match original image
+    heatmap_resized = cv2.resize(heatmap, (W, H), interpolation=cv2.INTER_LINEAR)
+
+    # Optional: normalize to 0-1
+    heatmap_resized = (heatmap_resized - heatmap_resized.min()) / (heatmap_resized.max() - heatmap_resized.min() + 1e-8)
+    heatmap_resized = np.uint8(255 * heatmap_resized)
+    return heatmap_resized
+
+def overlay_heatmap(img, heatmap, alpha=0.5):
+    """
+    img: Original image (Numpy array)
+    heatmap: 2D heatmap (Numpy array, values 0 to 1)
+    alpha: Transparency (0.5 means 50% image, 50% heatmap)
+    """
+    # 1. Resize heatmap to match original image size
+    #heatmap_resized = cv2.resize(heatmap, (img.shape[1], img.shape[0]))
+
+    # 2. Convert heatmap to 0-255 range (uint8)
+    heatmap_255 = np.uint8(255 * heatmap)
+
+    # 3. Apply a ColorMap (JET is standard for "hot/cold" visuals)
+    heatmap_color = cv2.applyColorMap(heatmap_255, cv2.COLORMAP_JET)
+    #print("Original image size: ", img.shape)
+    #print("Heatmap image size: ", heatmap_color.shape)
+    #sys.stdout.flush() # Forces the print to appear NOW
+
+    # 4. Ensure dtypes match (OpenCV blending needs same type)
+    #if img.dtype != np.uint8:
+    #    img = np.uint8(img)
+
+    # 4. Blend the two images
+    # formula: result = (img * (1-alpha)) + (heatmap * alpha)
+    #overlayed_img = cv2.addWeighted(img[0], 1 - alpha, heatmap_color, alpha, 0) # img: shape (1, H, W, Channel)
+    overlayed_img = cv2.addWeighted(img, 1 - alpha, heatmap_color, alpha, 0) # img: shape (H, W, Channel)
+
+    return overlayed_img
+
+
 num = 0  
-path = r"D:\ML\Unity-ML\Drive SDC"         # Destination/path to which all the current images will be saved 
+path = r"D:\ML\Self Driving Car\self_driving_car\Self-Driving-Car-Python\driving_data\Drive SDC Domain Shift Evening"         # Destination/path to which all the current images will be saved 
+heatmap_path = r"D:\ML\Self Driving Car\self_driving_car\Self-Driving-Car-Python\driving_data\Drive_SDC_heatmap_domain_shift_evening"         # Destination/path to which all the current images will be saved 
 while (True):
     num = num + 1
     imageName = 'Wasil'+ str(num) + '.png'      # Name of the images.
     #collecting current data
     strAngl, vlcty, thrttl, steeringAngle, velocity, throttle  = socketConnection()
-    image = np.array(ImageGrab.grab(bbox=(0, 120, 750, 540)))          # Taking the screebshot and adding in the array
+    image_ori = np.array(ImageGrab.grab(bbox=(0, 120, 750, 540)))          # Taking the screebshot and adding in the array
     
     csv_file(strAngl, vlcty, thrttl)
-    cv2.imwrite(os.path.join(path, imageName), image)                                       # Trying to save the image in the exact same directory.
+    cv2.imwrite(os.path.join(path, imageName), image_ori)                                       # Trying to save the image in the exact same directory.
     
+    image = image_process(image_ori)      # Preprocessing the image.
 
-    drive(image, steeringAngle, velocity, throttle)
+    steering_angle = drive(image, steeringAngle, velocity, throttle)
+
+    # computer gradient cam heatmap
+    heatmap = compute_gradcam_regression(model, image, steering_angle) # in numpy array format.
+    heatmap_resized = resize_heatmap_to_image(heatmap, image_ori)
+    #print(image.shape, heatmap.shape)
+    result = overlay_heatmap(image_ori, heatmap_resized)
+    #result = overlay_heatmap(image, heatmap)
+
+    imageName = 'sdc_heatmap_original_'+ str(num) + '.png'
+    cv2.imwrite(os.path.join(heatmap_path, imageName), result)
 
 """
 ### NOTE: divide steering angle by 10.
