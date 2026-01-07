@@ -13,9 +13,9 @@ This project is base on Udacity's Self-Driving Car Simulator.
 
 ## Case Study: Domain Shift in Self-Driving with Grad-CAM
 
-Link : ![Grad-CAM Analysis](https://mohammadwasil.github.io/wasil-portfolio/self_driving_car_domain_shift.html)
+[Grad-CAM Analysis](https://mohammadwasil.github.io/wasil-portfolio/self_driving_car_domain_shift.html)
 
-![sdccar](/Self-Driving-Car-Python/Self Driving Car/Python with Tensorflow/output.gif)
+![sdccar](Self-Driving-Car-Python/Self%20Driving%20Car/Python%20with%20Tensorflow/output.gif)
 
 ## Dependencies
 
