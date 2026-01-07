@@ -15,7 +15,7 @@ This project is base on Udacity's Self-Driving Car Simulator.
 
 [Grad-CAM Analysis](https://mohammadwasil.github.io/wasil-portfolio/self_driving_car_domain_shift.html)
 
-![sdccar](Self-Driving-Car-Python/Self%20Driving%20Car/Python%20with%20Tensorflow/output.gif)
+![sdccar](Self%20Driving%20Car/Python%20with%20Tensorflow/output.gif)
 
 ## Dependencies
 
