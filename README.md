@@ -2,6 +2,9 @@
 
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FMohammadWasil%2FSelf-Driving-Car-Python&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E32A2A&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
+[![hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://github.com/MohammadWasil/Self-Driving-Car-Python)](https://hits.seeyoufarm.com)
+
+
 This project is base on Udacity's Self-Driving Car Simulator.
 
 ## Domain Shift Scenarios
@@ -9,7 +12,7 @@ This project is base on Udacity's Self-Driving Car Simulator.
 | In-Domain Scenario | Out-of-Domain Scenario 1 | Out-of-Domain Scenario 2 |
 |------------------|------------------------|------------------------|
 | ![In-Domain](Self%20Driving%20Car/Python%20with%20Tensorflow/output_in_domain.gif) | ![OOD1](Self%20Driving%20Car/Python%20with%20Tensorflow/output_out_of_domain_rain.gif) | ![OOD2](Self%20Driving%20Car/Python%20with%20Tensorflow/output_out_of_domain_rain_fog.gif) |
-| Normal driving in trained environment | Driving in rain | Driving in rain/fog |
+| Normal driving in trained environment | Driving in Rain | Driving in Rain/Fog |
 
 YouTube video: [Self Driving Car](https://www.youtube.com/watch?v=UmtLtpY1XBs)
 
