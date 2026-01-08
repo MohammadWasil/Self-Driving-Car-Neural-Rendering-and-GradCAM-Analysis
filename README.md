@@ -4,48 +4,33 @@
 
 This project is base on Udacity's Self-Driving Car Simulator.
 
-![sdccar](https://user-images.githubusercontent.com/31696557/39665376-bb419dd4-50b0-11e8-83b4-e85b2eec666b.jpg)
+## Domain Shift Scenarios
 
-## How it is going to look(Video) !
+| In-Domain Scenario | Out-of-Domain Scenario 1 | Out-of-Domain Scenario 2 |
+|------------------|------------------------|------------------------|
+| ![In-Domain](Self%20Driving%20Car/Python%20with%20Tensorflow/output_in_domain.gif) | ![OOD1](Self%20Driving%20Car/Python%20with%20Tensorflow/output_out_of_domain_rain.gif) | ![OOD2](Self%20Driving%20Car/Python%20with%20Tensorflow/output_out_of_domain_rain_fog.gif) |
+| Normal driving in trained environment | Driving in Rain | Driving in Rain/Fog |
 
-[![](http://img.youtube.com/vi/UmtLtpY1XBs/0.jpg)](https://www.youtube.com/watch?v=UmtLtpY1XBs "SDC")
+YouTube video: [Self Driving Car](https://www.youtube.com/watch?v=UmtLtpY1XBs)
 
+## Case Study: Domain Shift in Self-Driving with Grad-CAM
+
+[Grad-CAM Analysis](https://mohammadwasil.github.io/wasil-portfolio/self_driving_car_domain_shift.html)
+
+![sdccar](Self%20Driving%20Car/Python%20with%20Tensorflow/output.gif)
 
 ## Dependencies
 
-You can install depedencies by running the following command in Anaconda prompt:
+This project requires Python 3.7.2 and several packages. I recommend using **Anaconda** for environment management.
 
-### With Theano Backend
-```
-# OpenCV
-conda install -c conda-forge opencv
-
-# Theano
-conda install mingw libpython
-conda install mkl=2017.0.3
-
-# Keras
-pip install keras
+**Core Python packages:**
+```bash
+pip install h5py==2.10.0 opencv-python pillow
 ```
 
-After installing all the dependencies, Change the backend of the Keras to "theano".<br/>
-For that, Go to C:\Users\YourSystemName\.keras and open Kersas.json file.<br/>
-Change the backend to "thenao".<br/>
-It would look something like this:
-```
-{
-    "backend": "theano",
-    "image_data_format": "channels_last",
-    "floatx": "float32",
-    "epsilon": 1e-07
-}
-```
+### With Tensorflow Backend (Recommended)
 
-### With Tensorflow Backend
-
-To install Tensorflow, follow this Youtube video:
-
-[![Install Tensorflow-GPU in 5 mins - EASY!!](http://img.youtube.com/vi/tPq6NIboLSc/0.jpg)](http://www.youtube.com/watch?v=tPq6NIboLSc "Install Tensorflow-GPU in 5 mins - EASY!!")
+I recommend TensorFlow for GPU acceleration. Follow these steps:
 
 ### Steps
 1. Create an environment <Br/>
@@ -69,7 +54,38 @@ To install Tensorflow, follow this Youtube video:
 7. And, finally, install Keras<Br/>
 ```pip install keras```
 
-Also, you need to have Unity3D game engine, which can be downloaded from [here](https://unity3d.com/) and install it.
+8. Optional: Follow this YouTube tutorial for GPU setup
+[![Install Tensorflow-GPU in 5 mins - EASY!!](http://img.youtube.com/vi/tPq6NIboLSc/0.jpg)](http://www.youtube.com/watch?v=tPq6NIboLSc "Install Tensorflow-GPU in 5 mins - EASY!!")
+
+### Other Tools
+
+ - Unity3D Game Engine (required for simulation): Download Unity3D from [here](https://unity3d.com/)
+
+### With Theano Backend
+```
+# OpenCV
+conda install -c conda-forge opencv
+
+# Theano
+conda install mingw libpython
+conda install mkl=2017.0.3
+
+# Keras
+pip install keras
+```
+
+- After installing all the dependencies, Change the backend of the Keras to "theano".<br/>
+- For that, Go to C:\Users\YourSystemName\.keras and open Kersas.json file.<br/>
+- Change the backend to "thenao".<br/>
+- It would look something like this:
+```
+{
+    "backend": "theano",
+    "image_data_format": "channels_last",
+    "floatx": "float32",
+    "epsilon": 1e-07
+}
+```
 
 ## Working with Unity3D Game Engine.
 1) Launch Unity3D Game Engine.
@@ -122,6 +138,6 @@ First, image is captured and current steering angle, throttle, and velocity from
 ### Caution!
 Before running the codes, try to change the path of each files and images.
 
-### More Information:
+## More Information:
 To know more about Convolutional Neural Network, check [this](https://adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/) github page.<br/>
 Check [this](https://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf) and [this](http://cs231n.stanford.edu/reports/2017/pdfs/626.pdf) for Self Driving Car.
