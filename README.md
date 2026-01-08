@@ -4,11 +4,15 @@
 
 This project is base on Udacity's Self-Driving Car Simulator.
 
-![sdccar](https://user-images.githubusercontent.com/31696557/39665376-bb419dd4-50b0-11e8-83b4-e85b2eec666b.jpg)
+## Domain Shift Scenarios
 
-## How it is going to look(Video) !
+| In-Domain Scenario | Out-of-Domain Scenario 1 | Out-of-Domain Scenario 2 |
+|------------------|------------------------|------------------------|
+| ![In-Domain](Self%20Driving%20Car/Python%20with%20Tensorflow/output_in_domain.gif) | ![OOD1](Self%20Driving%20Car/Python%20with%20Tensorflow/output_out_of_domain_rain.gif) | ![OOD2](Self%20Driving%20Car/Python%20with%20Tensorflow/output_out_of_domain_rain_fog.gif) |
+| Normal driving in trained environment | Driving in rain | Driving in rain/fog |
 
-[![](http://img.youtube.com/vi/UmtLtpY1XBs/0.jpg)](https://www.youtube.com/watch?v=UmtLtpY1XBs "SDC")
+
+SDC in Action: [![]()](https://www.youtube.com/watch?v=UmtLtpY1XBs "SDC")
 
 
 ## Case Study: Domain Shift in Self-Driving with Grad-CAM
