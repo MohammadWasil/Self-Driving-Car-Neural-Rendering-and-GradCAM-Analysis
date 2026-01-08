@@ -57,7 +57,7 @@ I recommend TensorFlow for GPU acceleration. Follow these steps:
 
 ### Other Tools
 
-Also, you need to have Unity3D game engine, which can be downloaded from [here](https://unity3d.com/) and install it.
+ - Unity3D Game Engine (required for simulation): Download Unity3D from [here](https://unity3d.com/)
 
 ### With Theano Backend
 ```
@@ -72,10 +72,10 @@ conda install mkl=2017.0.3
 pip install keras
 ```
 
-After installing all the dependencies, Change the backend of the Keras to "theano".<br/>
-For that, Go to C:\Users\YourSystemName\.keras and open Kersas.json file.<br/>
-Change the backend to "thenao".<br/>
-It would look something like this:
+- After installing all the dependencies, Change the backend of the Keras to "theano".<br/>
+- For that, Go to C:\Users\YourSystemName\.keras and open Kersas.json file.<br/>
+- Change the backend to "thenao".<br/>
+- It would look something like this:
 ```
 {
     "backend": "theano",
