@@ -11,9 +11,7 @@ This project is base on Udacity's Self-Driving Car Simulator.
 | ![In-Domain](Self%20Driving%20Car/Python%20with%20Tensorflow/output_in_domain.gif) | ![OOD1](Self%20Driving%20Car/Python%20with%20Tensorflow/output_out_of_domain_rain.gif) | ![OOD2](Self%20Driving%20Car/Python%20with%20Tensorflow/output_out_of_domain_rain_fog.gif) |
 | Normal driving in trained environment | Driving in rain | Driving in rain/fog |
 
-
-SDC in Action: [![]()](https://www.youtube.com/watch?v=UmtLtpY1XBs "SDC")
-
+YouTube video: [Self Driving Car](https://www.youtube.com/watch?v=UmtLtpY1XBs)
 
 ## Case Study: Domain Shift in Self-Driving with Grad-CAM
 
