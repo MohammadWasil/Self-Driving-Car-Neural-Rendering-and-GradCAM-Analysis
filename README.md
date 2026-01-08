@@ -19,7 +19,45 @@ This project is base on Udacity's Self-Driving Car Simulator.
 
 ## Dependencies
 
-You can install depedencies by running the following command in Anaconda prompt:
+This project requires Python 3.7.2 and several packages. I recommend using **Anaconda** for environment management.
+
+**Core Python packages:**
+```bash
+pip install h5py==2.10.0 opencv-python pillow
+```
+
+### With Tensorflow Backend (Recommended)
+
+I recommend TensorFlow for GPU acceleration. Follow these steps:
+
+### Steps
+1. Create an environment <Br/>
+```conda create -n tensorflow_gpu python=3.7```
+
+2. Activate the environment <Br/>
+```conda activate tensorflow_gpu```
+
+3. Install jupyter beforehand (since it downgrade the tensorflow version, if it is executed after tensorflow has been installed)<Br/>
+```conda install -c anaconda jupyter```
+
+4. Install the ipykernel<Br/>
+```pip install ipykernel```
+
+5. Register your environment<Br/>
+```python -m ipykernel install --user --name tensorflow_gpu --display-name "tensorflow_gpu"```
+
+6. Install [tensorflow gpu](https://anaconda.org/anaconda/tensorflow-gpu)<Br/>
+```conda install -c anaconda tensorflow-gpu```
+
+7. And, finally, install Keras<Br/>
+```pip install keras```
+
+8. Optional: Follow this YouTube tutorial for GPU setup
+[![Install Tensorflow-GPU in 5 mins - EASY!!](http://img.youtube.com/vi/tPq6NIboLSc/0.jpg)](http://www.youtube.com/watch?v=tPq6NIboLSc "Install Tensorflow-GPU in 5 mins - EASY!!")
+
+### Other Tools
+
+Also, you need to have Unity3D game engine, which can be downloaded from [here](https://unity3d.com/) and install it.
 
 ### With Theano Backend
 ```
@@ -46,36 +84,6 @@ It would look something like this:
     "epsilon": 1e-07
 }
 ```
-
-### With Tensorflow Backend
-
-To install Tensorflow, follow this Youtube video:
-
-[![Install Tensorflow-GPU in 5 mins - EASY!!](http://img.youtube.com/vi/tPq6NIboLSc/0.jpg)](http://www.youtube.com/watch?v=tPq6NIboLSc "Install Tensorflow-GPU in 5 mins - EASY!!")
-
-### Steps
-1. Create an environment <Br/>
-```conda create -n tensorflow_gpu python=3.7```
-
-2. Activate the environment <Br/>
-```conda activate tensorflow_gpu```
-
-3. Install jupyter beforehand (since it downgrade the tensorflow version, if it is executed after tensorflow has been installed)<Br/>
-```conda install -c anaconda jupyter```
-
-4. Install the ipykernel<Br/>
-```pip install ipykernel```
-
-5. Register your environment<Br/>
-```python -m ipykernel install --user --name tensorflow_gpu --display-name "tensorflow_gpu"```
-
-6. Install [tensorflow gpu](https://anaconda.org/anaconda/tensorflow-gpu)<Br/>
-```conda install -c anaconda tensorflow-gpu```
-
-7. And, finally, install Keras<Br/>
-```pip install keras```
-
-Also, you need to have Unity3D game engine, which can be downloaded from [here](https://unity3d.com/) and install it.
 
 ## Working with Unity3D Game Engine.
 1) Launch Unity3D Game Engine.
@@ -128,6 +136,6 @@ First, image is captured and current steering angle, throttle, and velocity from
 ### Caution!
 Before running the codes, try to change the path of each files and images.
 
-### More Information:
+## More Information:
 To know more about Convolutional Neural Network, check [this](https://adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/) github page.<br/>
 Check [this](https://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf) and [this](http://cs231n.stanford.edu/reports/2017/pdfs/626.pdf) for Self Driving Car.
