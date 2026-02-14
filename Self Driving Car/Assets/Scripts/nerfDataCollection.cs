@@ -5,39 +5,40 @@ using UnityEngine;
 public class nerfDataCollection : MonoBehaviour
 {
 
-    int currentFrame = 0;
-
     public Camera cam;
 
-    private Matrix4x4 m;
-    public Matrix4x4 c2w;
+    public Matrix4x4 m;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+    
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (currentFrame % 5 == 0)
+        m = cam.cameraToWorldMatrix;
+        
+        // flip the value of Y to face it downwords -Y axis.
+        // flip the value of Z to face it backwards -Z axis.
+        Vector4 up_y = m.GetColumn(1);
+        Vector4 forward_z = m.GetColumn(2);
+        m.SetColumn(1, -up_y);
+        m.SetColumn(2, -forward_z);
+        //nerfMatrix = FlipMatrix(m)
+    }
+
+    public float[][] FlipMatrix(Matrix4x4 mat){
+
+        float [][] nerfMatrix = new float[4][];
+
+        for(int i =0; i < 4; i++)
         {
-            // capture the screen
-
-            // get the camera transform - position and rotation
-            m = cam.cameraToWorldMatrix;
-            c2w = m.inverse;
-
-            for (int i = 0; i < 4; i++) {
-                c2w[i, 1] *= -1; // Flip Y
-                c2w[i, 2] *= -1; // Flip Z
-            }
-
-
-
+            Vector4 row = mat.GetRow(i);
+            nerfMatrix[i] = new float [] { row.x, -row.y, -row.z, row.w } ;
         }
 
-
+        return nerfMatrix;
     }
 }
