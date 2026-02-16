@@ -9735,7 +9735,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &453410273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9766,6 +9766,8 @@ MonoBehaviour:
     e31: 0
     e32: 0
     e33: 0
+  maxDistance: 100
+  distanceThreshold: 1
 --- !u!81 &453410274
 AudioListener:
   m_ObjectHideFlags: 0
@@ -9867,6 +9869,8 @@ MonoBehaviour:
     e31: 0
     e32: 0
     e33: 0
+  maxDistance: 100
+  distanceThreshold: 1
 --- !u!1 &915723911
 GameObject:
   m_ObjectHideFlags: 0
@@ -9964,13 +9968,14 @@ GameObject:
   - component: {fileID: 1285426832}
   - component: {fileID: 1285426831}
   - component: {fileID: 1285426830}
+  - component: {fileID: 1285426835}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &1285426830
 AudioListener:
   m_ObjectHideFlags: 0
@@ -10052,6 +10057,38 @@ Transform:
   m_Father: {fileID: 1035650023}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 8.005, y: 0.18200001, z: 2.6000001}
+--- !u!114 &1285426835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285426829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2605e2c15872d7546a65af04f10b85ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 1285426833}
+  m:
+    e00: 0
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 0
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 0
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 0
+  maxDistance: 100
+  distanceThreshold: 1
 --- !u!1001 &1311663415
 PrefabInstance:
   m_ObjectHideFlags: 0
