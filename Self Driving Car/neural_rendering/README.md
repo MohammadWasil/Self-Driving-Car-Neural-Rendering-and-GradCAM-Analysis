@@ -1,0 +1,19 @@
+### Translate Coordinate System
+
+Translate Left hand coordinate system used in Unity3D, to Right Hand coordinate system, following the covecntion of OpenCV (standard Computer Vison camera look orientation).
+
+photo -> photo
+
+Get the transform matrix from Unity3D, and flip the values of Y and Z for translation vector only.
+
+The tranform vector (camera intrinsic matrix) looks like the following:
+
+This homogeneous transformation is composed out of R, a 3-by-3 rotation matrix, and t, a 3-by-1 translation vector:
+
+$$
+\begin{bmatrix}
+R & t  \\
+0 & 1  \\
+\end{bmatrix}
+$$
+
