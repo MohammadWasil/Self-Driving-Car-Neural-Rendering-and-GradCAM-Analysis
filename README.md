@@ -13,6 +13,12 @@ This project is base on Udacity's Self-Driving Car Simulator.
 
 YouTube video: [Self Driving Car](https://www.youtube.com/watch?v=UmtLtpY1XBs)
 
+## Neural Rendering with NeRF
+
+| Original Image from Data Collection | Rendered Image from NeRF |
+|------------------|------------------------|
+| ![Original Image for Autonomous Driving](Self%20Driving%20Car/neural_rendering/original_frame.png) | ![Rendered Image from NeRF for Autonomous Driving](Self%20Driving%20Car/neural_rendering/NeRF_rendered_image.png) |
+
 ## Case Study: Domain Shift in Self-Driving with Grad-CAM
 
 [Grad-CAM Analysis](https://mohammadwasil.github.io/wasil-portfolio/self_driving_car_domain_shift.html)
