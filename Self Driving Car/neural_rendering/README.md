@@ -6,7 +6,7 @@
 
 | Original Image from Data Collection | Rendered Image from NeRF |
 |------------------|------------------------|
-| ![Original Image for Autonomous Driving](frame_0000.png) | ![Rendered Image from NeRF for Autonomous Driving](NeRF_rendered_image.png) |
+| ![Original Image for Autonomous Driving](original_frame.png) | ![Rendered Image from NeRF for Autonomous Driving](NeRF_rendered_image.png) |
 
 ### Analysis and Observations
 
