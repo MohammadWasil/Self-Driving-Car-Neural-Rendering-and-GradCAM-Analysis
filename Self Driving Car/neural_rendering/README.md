@@ -2,7 +2,9 @@
 
 Translate Left hand coordinate system used in Unity3D, to Right Hand coordinate system, following the convention of OpenCV (standard Computer Vison camera look orientation).
 
-![Left Hand Coordinate System](Self%20Driving%20Car/neural_rendering/left_hand_coordinate_system.png) -> ![Right Hand Coordinate System2](Self%20Driving%20Car/neural_rendering/right_hand_coordinate_system.png)
+D:\ML\Self Driving Car\self_driving_car\Self-Driving-Car-Python\Self Driving Car\neural_rendering
+
+![Left Hand Coordinate System](left_hand_coordinate_system.png) -> ![Right Hand Coordinate System2](right_hand_coordinate_system.png)
 
 Get the transform matrix from Unity3D, and flip the values of Y and Z for translation vector only.
 
