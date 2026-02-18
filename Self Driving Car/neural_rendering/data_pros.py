@@ -22,8 +22,7 @@ def load_nerf_poses_from_keys(json_path):
     # Convert to (N, 4, 4) numpy array
     return np.array(all_poses, dtype=np.float32)
 
-# Usage
-poses = load_nerf_poses_from_keys('D:/ML/Self Driving Car/self_driving_car/Self-Driving-Car-Python/driving_data/transforms_1st_lane.json')
+poses = load_nerf_poses_from_keys('transforms_1st_lane.json')
 
 print(f"Batch Shape: {poses.shape}")
 print("Example Matrix (Frame 0):\n", poses[0])
