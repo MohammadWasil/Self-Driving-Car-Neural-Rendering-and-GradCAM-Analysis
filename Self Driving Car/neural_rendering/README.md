@@ -1,12 +1,26 @@
-### Neural Rendering with NeRF
+## Neural Rendering with NeRF
 
-1) Data Collection: Drive the car in the simulation, and capture image of the road in front of the car and the camera transform matrix(translation vector and rotation matrix)
+1) Data Collection: Drive the car in the simulation, and capture image of the road in front of the car and the camera transform matrix (translation vector and rotation matrix)
 2) Feed the data into Small NeRF architecture to learn the 3D representation of the road environment.
 3) Render an image from the hold-out test image. The model was trained for 3000 iterations, and rendered the following results:
 
-![Left to Right Hand Coordinate System](NeRF_rendered_image.png)
+![Rendered Image from NeRF for Autonomous Driving](NeRF_rendered_image.png)
 
-### Coordinate System Alignment
+### Analysis and Observations
+
+#### Observations
+
+During testing, the model successfully reconstructed the global geometry by accurately placing the road, trees, and sky in their place, but the final output remained blurry. The PSNR stabilized around 18, suggesting that while the spatial layout was learned, high-frequency details were not fully captured.
+
+#### Analysis
+
+1) The Small NeRF MLP architecture acted as a low-pass filter. It captured the coarse shapes but lacked the weights to represent fine textures.
+
+2) At 3000 iterations, the model provides a successful proof-of-concept for the Simulation to rendering pipeline. Standard NeRF models require 50,000+ iterations to resolve sharp details.
+
+3) Despite the blur, all features (road, sky, trees) are in their correct geometric positions, proving that the coordinate translation from Unity to the Neural volume was successful.
+
+## Coordinate System Alignment
 
 Unity3D uses a Left-Handed coordinate system ($+Y$ up, $+Z$ forward), whereas standard Computer Vision (OpenCV/NeRF) uses a Right-Handed convention. To ensure the neural renderer correctly interprets the camera's perspective, we perform a coordinate basis translation.
 
@@ -14,7 +28,7 @@ Unity3D uses a Left-Handed coordinate system ($+Y$ up, $+Z$ forward), whereas st
 
 Get the transform matrix from Unity3D, and flip the values of Y and Z for translation vector only.
 
-### Transform Matrix (Camera Extrinsic Matrix)
+### Transform Matrix (Camera Extrinsic Properties)
 
 The camera's position and orientation are represented by a $4 \times 4$ homogeneous transformation matrix, combining the $3 \times 3$ Rotation matrix ($R$) and the $3 \times 1$ Translation vector ($t$):
 
@@ -61,9 +75,9 @@ And,
 $$
 R_y \=
 \begin{bmatrix}
-cos(r_x) & 0 & -sin(r_x) \\
+cos(r_y) & 0 & sin(r_y) \\
 0 & 1 & 0 \\
-sin(r_x) & 0 & cos(r_x) \\
+-sin(r_y) & 0 & cos(r_y) \\
 \end{bmatrix}
 \=
 \begin{bmatrix}
@@ -94,4 +108,4 @@ R = R_y \cdot (R_x \cdot R_z) \= \begin{bmatrix}
 \end{bmatrix}
 $$
 
-Next step is to flip the values if Y and Z in the rotation matrix to align with the standard Computer Vison orientation.
+Next step is to flip the values of Y and Z in the rotation matrix to align with the standard Computer Vision orientation.
