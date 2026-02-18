@@ -81,7 +81,7 @@ def socketConnection():
     return steeringAngleList, velocityList, throttleList, steeringAngle, velocity, throttle
 
 
-filename = r"D:\ML\Self Driving Car\self_driving_car\Self-Driving-Car-Python\driving_data\Drive_SDC_domain_shift_evening.csv" 	#Directory to save your current Data in a csv file.
+filename = r"D:\ML\Self Driving Car\self_driving_car\Self-Driving-Car-Python\driving_data\Drive_SDC_3_lane_way.csv" 	#Directory to save your current Data in a csv file.
 
 def csv_file(steer_Angle, velocity, throttle):
     
@@ -181,8 +181,8 @@ def overlay_heatmap(img, heatmap, alpha=0.5):
 
 
 num = 0  
-path = r"D:\ML\Self Driving Car\self_driving_car\Self-Driving-Car-Python\driving_data\Drive SDC Domain Shift Evening"         # Destination/path to which all the current images will be saved 
-heatmap_path = r"D:\ML\Self Driving Car\self_driving_car\Self-Driving-Car-Python\driving_data\Drive_SDC_heatmap_domain_shift_evening"         # Destination/path to which all the current images will be saved 
+path = r"D:\ML\Self Driving Car\self_driving_car\Self-Driving-Car-Python\driving_data\Drive SDC 3-way lane"         # Destination/path to which all the current images will be saved 
+heatmap_path = r"D:\ML\Self Driving Car\self_driving_car\Self-Driving-Car-Python\driving_data\Drive_SDC_heatmap_3-way_lane_out_of_domain"         # Destination/path to which all the current images will be saved 
 while (True):
     num = num + 1
     imageName = 'Wasil'+ str(num) + '.png'      # Name of the images.
@@ -190,22 +190,21 @@ while (True):
     strAngl, vlcty, thrttl, steeringAngle, velocity, throttle  = socketConnection()
     image_ori = np.array(ImageGrab.grab(bbox=(0, 120, 750, 540)))          # Taking the screebshot and adding in the array
     
-    csv_file(strAngl, vlcty, thrttl)
-    cv2.imwrite(os.path.join(path, imageName), image_ori)                                       # Trying to save the image in the exact same directory.
+    #csv_file(strAngl, vlcty, thrttl)
+    #cv2.imwrite(os.path.join(path, imageName), image_ori)                                       # Trying to save the image in the exact same directory.
     
     image = image_process(image_ori)      # Preprocessing the image.
 
     steering_angle = drive(image, steeringAngle, velocity, throttle)
 
     # computer gradient cam heatmap
-    heatmap = compute_gradcam_regression(model, image, steering_angle) # in numpy array format.
-    heatmap_resized = resize_heatmap_to_image(heatmap, image_ori)
+    #heatmap = compute_gradcam_regression(model, image, steering_angle) # in numpy array format.
+    #heatmap_resized = resize_heatmap_to_image(heatmap, image_ori)
     #print(image.shape, heatmap.shape)
-    result = overlay_heatmap(image_ori, heatmap_resized)
-    #result = overlay_heatmap(image, heatmap)
+    #result = overlay_heatmap(image_ori, heatmap_resized)
 
-    imageName = 'sdc_heatmap_original_'+ str(num) + '.png'
-    cv2.imwrite(os.path.join(heatmap_path, imageName), result)
+    #imageName = 'sdc_heatmap_original_'+ str(num) + '.png'
+    #cv2.imwrite(os.path.join(heatmap_path, imageName), result)
 
 """
 ### NOTE: divide steering angle by 10.

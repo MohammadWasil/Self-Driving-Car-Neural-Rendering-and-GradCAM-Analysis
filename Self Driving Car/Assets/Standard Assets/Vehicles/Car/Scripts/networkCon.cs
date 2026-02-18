@@ -109,7 +109,7 @@ public class networkCon : MonoBehaviour {
 		string dataReceived = Encoding.UTF8.GetString(buffer, 0, bytesRead);
 
 		//nwStream.Write(buffer, 0, bytesRead);
-		Debug.Log (dataReceived);
+		// Debug.Log (dataReceived);
 
 		getData (dataReceived);
 
