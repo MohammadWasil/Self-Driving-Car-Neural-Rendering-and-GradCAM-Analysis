@@ -5,7 +5,7 @@
 3) Render an image from the hold-out test image. The model was trained for 3000 iterations, and rendered the following results:
 
 | Original Image from Data Collection | Rendered Image from NeRF |
-|------------------|------------------------|------------------------|
+|------------------|------------------------|
 | ![Original Image for Autonomous Driving](frame_0000.png) | ![Rendered Image from NeRF for Autonomous Driving](NeRF_rendered_image.png) |
 
 ### Analysis and Observations
