@@ -1,14 +1,22 @@
-### Translating Coordinate System
+### Neural Rendering with NeRF
 
-Translate Left hand coordinate system used in Unity3D, to Right Hand coordinate system, following the convention of OpenCV (standard Computer Vison camera look orientation).
+1) Data Collection: Drive the car on the car, and capture image of the road in front of the car and the camera transpose matrix (translation vector and rotation matrix)
+2) Feed the data into Small NeRF architecture to learn the 3D representation of the road environment.
+3) Render an image from the hold-out test image. The model was trained for 3000 ietrations, and rendered the following results:
 
-D:\ML\Self Driving Car\self_driving_car\Self-Driving-Car-Python\Self Driving Car\neural_rendering
+![Left to Right Hand Coordinate System](NeRF_rendered_image.png)
+
+### Coordinate System Alignment
+
+Unity3D uses a Left-Handed coordinate system ($+Y$ up, $+Z$ forward), whereas standard Computer Vision (OpenCV/NeRF) uses a Right-Handed convention. To ensure the neural renderer correctly interprets the camera's perspective, we perform a coordinate basis translation.
 
 ![Left to Right Hand Coordinate System](left_to_right_hand_coord_system.png)
 
 Get the transform matrix from Unity3D, and flip the values of Y and Z for translation vector only.
 
 ### Transform Matrix (camera intrinsic matrix)
+
+The camera's position and orientation are represented by a $4 \times 4$ homogeneous transformation matrix, combining the $3 \times 3$ Rotation matrix ($R$) and the $3 \times 1$ Translation vector ($t$):
 
 $$
 \begin{bmatrix}
@@ -24,14 +32,13 @@ r_{31} & r_{32} & r_{33} & t_{z} \\
 \end{bmatrix}
 $$
 
-This homogeneous transformation is composed out of R, a $$3 \times 3$$ Rotation matrix, and t, a $$3 \times 1$$ Translation vector (repsenting the camera position).
 The row is a homogeneous space of $$(0, 0, 0, 1)$$.
 
 ### How is Rotation Matrix created?
 
-Let says, we rotate our object in x-ais by 15, y axis by 20,
-i.e., <Br/>
-$$r_x = 15, r_y = 20$$
+To convert Unity’s Euler angles ($r_x, r_y, r_z$) into this rotation matrix, we calculate the individual rotation matrices for each axis and multiply them in the specific order used by the simulation engine:
+
+Let says, we rotate our object in x-ais by 15, y axis by 20, i.e., $$r_x = 15, r_y = 20$$
 Then, our $$R_x$$ matrix will look like:
 
 $$
@@ -49,7 +56,7 @@ R_x \=
 \end{bmatrix}
 $$
 
-And similarly, 
+And, 
 
 $$
 R_y \=
@@ -66,7 +73,7 @@ sin(r_x) & 0 & cos(r_x) \\
 \end{bmatrix}
 $$
 
-and,
+And,
 
 $$
 R_z \=
