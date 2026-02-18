@@ -34,3 +34,5 @@ sysinfo.txt
 *.unitypackage
 
 /driving_data/*
+
+*.npy
