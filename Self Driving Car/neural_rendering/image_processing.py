@@ -42,10 +42,21 @@ def load_images_to_npy(json_path, image_folder, target_h=100):
 # Usage
 JSON_FILE = 'D:/ML/Self Driving Car/self_driving_car/Self-Driving-Car-Python/driving_data/transforms_1st_lane.json'
 IMG_DIR = 'D:/ML/Self Driving Car/self_driving_car/Self-Driving-Car-Python/driving_data/screenshots_1st_lane/'
+image_batch_lane1 = load_images_to_npy(JSON_FILE, IMG_DIR)
 
-image_batch = load_images_to_npy(JSON_FILE, IMG_DIR)
+JSON_FILE = 'D:/ML/Self Driving Car/self_driving_car/Self-Driving-Car-Python/driving_data/transforms_2nd_lane.json'
+IMG_DIR = 'D:/ML/Self Driving Car/self_driving_car/Self-Driving-Car-Python/driving_data/screenshots_2nd_lane/'
+image_batch_lane2 = load_images_to_npy(JSON_FILE, IMG_DIR)
 
-print(f"Image Batch Shape: {image_batch.shape}") # (N, 720, 1280, 3)
+JSON_FILE = 'D:/ML/Self Driving Car/self_driving_car/Self-Driving-Car-Python/driving_data/transforms_3rd_lane.json'
+IMG_DIR = 'D:/ML/Self Driving Car/self_driving_car/Self-Driving-Car-Python/driving_data/screenshots_3rd_lane/'
+image_batch_lane3 = load_images_to_npy(JSON_FILE, IMG_DIR)
 
+print(f"Image Batch Shape: {image_batch_lane1.shape}") # (N, 720, 1280, 3)
+print(f"Image Batch Shape: {image_batch_lane2.shape}") # (N, 720, 1280, 3)
+print(f"Image Batch Shape: {image_batch_lane3.shape}") # (N, 720, 1280, 3)
+
+all_images = np.concatenate([image_batch_lane1, image_batch_lane2, image_batch_lane3], axis=0)
+print(f"All Image Batch Shape: {all_images.shape}") # (N, 720, 1280, 3)
 # Save as single file
-np.save('transforms_1st_lane.npy', image_batch)
+np.save('transforms_all_lanes.npy', all_images)

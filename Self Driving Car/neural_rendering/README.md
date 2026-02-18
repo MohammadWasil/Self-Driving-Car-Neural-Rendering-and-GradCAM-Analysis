@@ -15,7 +15,6 @@ $$
 R & t  \\
 0 & 1  \\
 \end{bmatrix}
-$$
 =
 \begin{bmatrix}
 r_{11} & r_{11} & r_{11} & r_{x} \\
