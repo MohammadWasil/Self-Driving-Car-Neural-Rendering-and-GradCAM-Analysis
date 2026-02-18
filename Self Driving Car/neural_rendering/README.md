@@ -16,4 +16,13 @@ R & t  \\
 0 & 1  \\
 \end{bmatrix}
 $$
+=
+\begin{bmatrix}
+r_{11} & r_{11} & r_{11} & r_{x} \\
+r_{21} & r_{22} & r_{23} & r_{y} \\
+r_{31} & r_{32} & r_{33} & r_{z} \\
+0 & 0 & 0 & 1 \\
+\end{bmatrix}
+$$
 
+The top 3x3 matrix is the Rotation Matrix, whereas, the top-3 values of the last column is the translation matrix (repsenting the camera position)
